@@ -1,7 +1,16 @@
 <?php
 require_once("db.php");
 require_once("globals.php");
+require_once("models/Message.php");
 
+ $message = new Message($BASE_URL);
+
+  $flassMessage = $message->getMessage();
+
+  if(!empty($flassMessage["msg"])) {
+    // Limpar a mensagem
+    $message->clearMessage();
+  }
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +20,6 @@ require_once("globals.php");
 <meta name="viewport" content="width=device-width. initial-scale=1.0">
 <title>Filmes</title>
 <link rel="short icon" href="img/logo.ico">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-
-bootstrap/5.2.3/css/bootstrap.css">
 
 <!-- CSS -->
 <link rel="stylesheet" href="css/styles.css">
@@ -60,11 +66,16 @@ type="search" placeholder="Buscar Filmes" aria-label="Search">
 <div class="collapse navbar-collapse" id="navbar">
 <ul class="navbar-nav">
 <li class="nav-item">
-<a href="<?= $BASE_URL ?>auth.php" class="nav-link">Entrar /
+<a href="<?= $BASE_URL?>auth.php" class="nav-link">Entrar /
 Cadastrar</a>
 </li>
 </ul>
 </div>
 </nav>
 </header>
-
+<?php if(!empty($flassMessage["msg"])): ?>
+ <div class="msg-container">
+ <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"]
+?></p>
+ </div>
+ <?php endif; ?>
