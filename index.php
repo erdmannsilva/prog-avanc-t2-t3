@@ -1,11 +1,9 @@
 <?php
-require_once("db.php");
-require_once("globals.php");
+require_once("templates/header.php");
 ?>
-<!DOCTYPE html>
-<head>
-<title>Filmes</title>
-</head>
-<body>
-    <h1>Conexão</h1>
-</body>
+<div id="main-container" class="container-fluid">
+<h1>Conteúdo</h1>
+</div>
+<?php
+require_once("templates/footer.php");
+?>
